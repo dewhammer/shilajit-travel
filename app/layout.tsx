@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://shilajit-travel-fl47zxeom-joachims-projects-a8a8bf54.vercel.app'),
   title: "Shilajit Warrior - Embrace Your Inner Strength",
   description: "Discover the power of Shilajit with Shilajit Warrior. Premium quality, natural supplements to enhance your vitality and wellness.",
   openGraph: {
