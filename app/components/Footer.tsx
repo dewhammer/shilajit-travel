@@ -21,7 +21,44 @@ const Footer = () => {
 
     const section = document.getElementById(sectionMap[sectionId.toLowerCase()] || sectionId.toLowerCase());
     if (section) {
-      section.scrollIntoView({ behavior: 'smooth' });
+      // Prevent default scrolling behavior
+      const preventDefaultScroll = (e: Event) => {
+        e.preventDefault();
+      };
+      
+      // Add event listener to prevent default scroll
+      window.addEventListener('scroll', preventDefaultScroll, { passive: false });
+      
+      // Get the target position
+      const start = window.pageYOffset;
+      const end = section.getBoundingClientRect().top + window.pageYOffset;
+      const distance = end - start;
+      const duration = 1000; // 1 second
+      let startTime: number | null = null;
+
+      function easeInOutCubic(t: number): number {
+        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      }
+
+      function animate(currentTime: number) {
+        if (startTime === null) startTime = currentTime;
+        const timeElapsed = currentTime - startTime;
+        const progress = Math.min(timeElapsed / duration, 1);
+        
+        const easeProgress = easeInOutCubic(progress);
+        const position = start + distance * easeProgress;
+        
+        window.scrollTo(0, position);
+        
+        if (timeElapsed < duration) {
+          requestAnimationFrame(animate);
+        } else {
+          // Remove event listener when animation is complete
+          window.removeEventListener('scroll', preventDefaultScroll);
+        }
+      }
+
+      requestAnimationFrame(animate);
     }
   };
 

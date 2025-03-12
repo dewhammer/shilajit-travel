@@ -11,14 +11,18 @@ const Navbar = () => {
   const scrollToSection = (sectionId: string) => {
     const section = document.getElementById(sectionId);
     if (section) {
-      section.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'start'
-      });
+      // Prevent default scrolling behavior
+      const preventDefaultScroll = (e: Event) => {
+        e.preventDefault();
+      };
       
-      // Custom smooth scroll with easing
+      // Add event listener to prevent default scroll
+      window.addEventListener('scroll', preventDefaultScroll, { passive: false });
+      
+      // Get the target position
       const start = window.pageYOffset;
       const end = section.getBoundingClientRect().top + window.pageYOffset;
+      const distance = end - start;
       const duration = 1000; // 1 second
       let startTime: number | null = null;
 
@@ -32,12 +36,15 @@ const Navbar = () => {
         const progress = Math.min(timeElapsed / duration, 1);
         
         const easeProgress = easeInOutCubic(progress);
-        const position = start + (end - start) * easeProgress;
+        const position = start + distance * easeProgress;
         
         window.scrollTo(0, position);
         
         if (timeElapsed < duration) {
           requestAnimationFrame(animate);
+        } else {
+          // Remove event listener when animation is complete
+          window.removeEventListener('scroll', preventDefaultScroll);
         }
       }
 
