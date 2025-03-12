@@ -1,13 +1,26 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { fadeIn, slideIn } from '../utils/animations';
 import Image from 'next/image';
+import { getImagePath } from '../utils/imagePath';
+import { useDeviceInfo } from '../utils/deviceDetection';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const { isMobile } = useDeviceInfo();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const scrollToSection = (sectionId: string) => {
     const section = document.getElementById(sectionId);
@@ -59,30 +72,30 @@ const Navbar = () => {
       variants={fadeIn('down')}
       initial="hidden"
       animate="visible"
-      className="absolute top-0 left-0 right-0 z-50 py-4 md:py-6 px-4 md:px-8 lg:px-16"
+      className={`fixed top-0 left-0 right-0 z-50 py-2 xs:py-3 sm:py-4 md:py-6 px-2 xs:px-3 sm:px-4 md:px-8 lg:px-16 transition-all duration-300 ${isScrolled ? 'bg-black/80 backdrop-blur-md' : ''}`}
     >
       <div className="max-w-[1440px] mx-auto flex justify-between items-center">
         <motion.div
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="flex items-center gap-2"
+          className="flex items-center gap-1 sm:gap-2"
         >
-          <div className="relative w-8 h-8 md:w-10 md:h-10">
+          <div className="relative w-5 h-5 xs:w-6 xs:h-6 sm:w-8 sm:h-8 md:w-10 md:h-10">
             <Image 
-              src="/images/shilajit-icon.png" 
+              src={getImagePath('/images/shilajit-icon.png')}
               alt="Shilajit Warrior Logo" 
               width={40} 
               height={40}
               className="object-contain"
             />
           </div>
-          <Link href="/" className="font-poppins font-bold text-base sm:text-lg md:text-[19px] tracking-[0.07em] text-white">
+          <Link href="/" className="font-poppins font-bold text-xs xs:text-sm sm:text-base md:text-lg lg:text-[19px] tracking-[0.07em] text-white">
             SHILAJIT WARRIOR
           </Link>
         </motion.div>
 
-        <div className="hidden md:flex items-center gap-8 lg:gap-16">
-          <div className="flex items-center gap-8 lg:gap-16">
+        <div className="hidden md:flex items-center gap-6 lg:gap-16">
+          <div className="flex items-center gap-6 lg:gap-16">
             {['Home', 'About', 'Blog', 'Contact'].map((item) => (
               <motion.button
                 key={item}
@@ -114,10 +127,10 @@ const Navbar = () => {
         <motion.button 
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
-          className="md:hidden text-white p-2"
+          className="md:hidden text-white p-1"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </motion.button>
@@ -131,9 +144,9 @@ const Navbar = () => {
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="md:hidden absolute top-full left-0 right-0 bg-black/80 backdrop-blur-lg py-6 px-4"
+            className="md:hidden fixed top-[40px] xs:top-[44px] sm:top-[52px] md:top-[72px] left-0 right-0 bg-black/90 backdrop-blur-lg py-3 xs:py-4 sm:py-6 px-3 sm:px-4"
           >
-            <div className="flex flex-col items-center gap-6">
+            <div className="flex flex-col items-center gap-3 xs:gap-4 sm:gap-6">
               {['Home', 'About', 'Blog', 'Contact'].map((item, index) => (
                 <motion.button
                   key={item}
@@ -141,7 +154,7 @@ const Navbar = () => {
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => scrollToSection(item.toLowerCase())}
-                  className="text-white font-poppins text-base relative group"
+                  className="text-white font-poppins text-xs xs:text-sm sm:text-base relative group"
                 >
                   {item}
                   <motion.span
@@ -155,7 +168,7 @@ const Navbar = () => {
                 variants={fadeIn('up', 0.4)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="text-white font-poppins font-semibold text-base tracking-[0.1em]"
+                className="text-white font-poppins font-semibold text-xs xs:text-sm sm:text-base tracking-[0.1em]"
               >
                 LOG IN
               </motion.button>

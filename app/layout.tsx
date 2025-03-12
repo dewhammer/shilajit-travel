@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import DeviceDetector from "./components/DeviceDetector";
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://shilajit-travel-fl47zxeom-joachims-projects-a8a8bf54.vercel.app'),
@@ -40,8 +41,12 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth">
       <head>
         <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&family=SF+Pro:wght@400;500&display=swap" rel="stylesheet" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
       </head>
-      <body>{children}</body>
+      <body>
+        <DeviceDetector />
+        {children}
+      </body>
     </html>
   );
 }
