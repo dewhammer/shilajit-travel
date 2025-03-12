@@ -10,10 +10,10 @@ export const metadata: Metadata = {
     description: "Discover the power of Shilajit with Shilajit Warrior. Premium quality, natural supplements to enhance your vitality and wellness.",
     images: [
       {
-        url: "/images/shilajit-warrior-logo.png",
+        url: "/images/I choose-3.jpg",
         width: 1200,
         height: 630,
-        alt: "Shilajit Warrior Logo",
+        alt: "Shilajit Warrior",
       }
     ],
     type: "website",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Shilajit Warrior - Embrace Your Inner Strength",
     description: "Discover the power of Shilajit with Shilajit Warrior. Premium quality, natural supplements to enhance your vitality and wellness.",
-    images: ["/images/shilajit-warrior-logo.png"],
+    images: ["/images/I choose-3.jpg"],
   },
   icons: {
     icon: "/images/shilajit-icon.png",
