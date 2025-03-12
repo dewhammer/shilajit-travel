@@ -2,8 +2,32 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "TRAVELAND - Your Journey Begins Here",
-  description: "Discover extraordinary destinations and unforgettable experiences with TRAVELAND. Start your journey with us today.",
+  title: "Shilajit Warrior - Embrace Your Inner Strength",
+  description: "Discover the power of Shilajit with Shilajit Warrior. Premium quality, natural supplements to enhance your vitality and wellness.",
+  openGraph: {
+    title: "Shilajit Warrior - Embrace Your Inner Strength",
+    description: "Discover the power of Shilajit with Shilajit Warrior. Premium quality, natural supplements to enhance your vitality and wellness.",
+    images: [
+      {
+        url: "/images/shilajit-warrior-logo.png",
+        width: 1200,
+        height: 630,
+        alt: "Shilajit Warrior Logo",
+      }
+    ],
+    type: "website",
+    siteName: "Shilajit Warrior",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Shilajit Warrior - Embrace Your Inner Strength",
+    description: "Discover the power of Shilajit with Shilajit Warrior. Premium quality, natural supplements to enhance your vitality and wellness.",
+    images: ["/images/shilajit-warrior-logo.png"],
+  },
+  icons: {
+    icon: "/images/shilajit-icon.png",
+    apple: "/images/shilajit-icon.png",
+  }
 };
 
 export default function RootLayout({

@@ -4,6 +4,7 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  generateMetadata: true,
 };
 
 module.exports = nextConfig; 

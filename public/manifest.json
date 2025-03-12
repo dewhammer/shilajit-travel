@@ -1,0 +1,21 @@
+{
+  "name": "Shilajit Warrior",
+  "short_name": "Shilajit",
+  "description": "Discover the power of Shilajit with Shilajit Warrior. Premium quality, natural supplements to enhance your vitality and wellness.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#181413",
+  "theme_color": "#181413",
+  "icons": [
+    {
+      "src": "/images/shilajit-icon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/shilajit-warrior-logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+} 

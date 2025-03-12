@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { fadeIn, slideIn } from '../utils/animations';
+import Image from 'next/image';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -64,9 +65,19 @@ const Navbar = () => {
         <motion.div
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
+          className="flex items-center gap-2"
         >
+          <div className="relative w-8 h-8 md:w-10 md:h-10">
+            <Image 
+              src="/images/shilajit-icon.png" 
+              alt="Shilajit Warrior Logo" 
+              width={40} 
+              height={40}
+              className="object-contain"
+            />
+          </div>
           <Link href="/" className="font-poppins font-bold text-base sm:text-lg md:text-[19px] tracking-[0.07em] text-white">
-            TRAVELAND
+            SHILAJIT WARRIOR
           </Link>
         </motion.div>
 
